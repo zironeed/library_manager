@@ -1,9 +1,9 @@
 from django.urls import path
 
-from views import BookListView, BookRetrieveView, BookUpdateView, BookCreateView, BookDestroyView
-from apps import ManagerappConfig
+from manager_app.views import BookListView, BookRetrieveView, BookUpdateView, BookCreateView, BookDestroyView
+from manager_app.apps import ManagerappConfig
 
-app = ManagerappConfig.name
+app_name = ManagerappConfig.name
 
 urlpatterns = [
     path('book/create/', BookCreateView.as_view(), name='book_create'),
