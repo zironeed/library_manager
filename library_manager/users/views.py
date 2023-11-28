@@ -2,6 +2,7 @@ from rest_framework import status
 from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
+from users.tasks import send_letter
 from users.serializers import UserSerializer
 from users.models import User
 
@@ -17,6 +18,7 @@ class UserRegistrationView(CreateAPIView):
         if serializer.is_valid():
             serializer.save()
             data['response'] = True
+            send_letter.delay(request.data['email'])
             return Response(data, status=status.HTTP_200_OK)
         else:
             data = serializer.errors
