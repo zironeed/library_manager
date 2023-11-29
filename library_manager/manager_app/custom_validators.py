@@ -2,7 +2,7 @@ from rest_framework import validators
 
 
 def publish_year_validator(year):
-    if year > 2023 or year < 1900:
+    if year > 2023 or year < 1800:
         raise validators.ValidationError('Enter the correct publication year')
 
 
