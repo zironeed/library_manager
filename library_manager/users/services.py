@@ -1,4 +1,7 @@
 from django.core.mail import send_mail as sm
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def send_mail(email):
@@ -9,4 +12,7 @@ def send_mail(email):
         recipient_list=[email],
     )
 
-    print(f'mail sent to {email}')
+    logger.info(f"""
+*********************
+mail sent to {email}
+*********************""")

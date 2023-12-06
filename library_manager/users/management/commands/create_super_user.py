@@ -1,5 +1,8 @@
 from django.core.management import BaseCommand
 from users.models import User
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class Command(BaseCommand):
@@ -8,7 +11,11 @@ class Command(BaseCommand):
         check_admin = User.objects.filter(email='admin@gmail.com')
 
         if check_admin:
-            return 'We already have admin!'
+            logger.info(f"""
+*********************
+We already have admin!
+*********************""")
+            return 0
 
         admin = User.objects.create(
             username='admin',
